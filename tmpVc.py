@@ -110,8 +110,11 @@ class TmpVcCog(commands.Cog):
                 await self.is_channel_tmpVc(before.channel)
             ):
                 # Check if the channel is a temporary voice channel
-                await before.channel.delete()
                 await self.unregister_tmpVc(before.channel.id)
+                try:
+                    await before.channel.delete()
+                except discord.errors.NotFound:
+                    pass
 
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel: discord.abc.GuildChannel):
