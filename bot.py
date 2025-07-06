@@ -25,7 +25,7 @@ class MecBot(commands.Bot):
             # allowed_contexts=allowed_contexts,
             # allowed_installs=allowed_installs,
             intents=discord.Intents.all(),
-            activity=discord.Activity(state="i became a graveyard for us."),
+            activity=discord.Activity(state=os.getenv("DISCORD_STATUS")),
         )
         self.db = db
 
