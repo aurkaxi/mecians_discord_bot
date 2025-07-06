@@ -31,7 +31,7 @@ class MecBot(commands.Bot):
                 state=os.getenv("DISCORD_STATUS"),
             ),
         )
-        self.db = db
+        self.db: AsyncWsSurrealConnection | AsyncHttpSurrealConnection = db
 
     async def setup_hook(self) -> None:
         extensions = [
