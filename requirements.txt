@@ -1,0 +1,4 @@
+discord.py[voice] == 2.5.2
+python-dotenv == 1.0.0
+jishaku == 2.6.0
+surrealdb == 1.0.4
