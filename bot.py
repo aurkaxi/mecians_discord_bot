@@ -36,6 +36,7 @@ class MecBot(commands.Bot):
     async def setup_hook(self) -> None:
         extensions = [
             "jishaku",
+            "tmpVc",
         ]
 
         for ext in extensions:
