@@ -103,7 +103,7 @@ class TmpVcCog(commands.Cog):
                     spawner_id=spawner_channel.id,
                 )
 
-        elif before.channel is not None:
+        if before.channel is not None:
             assert isinstance(before.channel, discord.VoiceChannel)
             # User left a voice channel
             if (len(before.channel.members) == 0) and (
@@ -155,8 +155,14 @@ class TmpVcCog(commands.Cog):
                 "created_at": discord.utils.utcnow(),
             },
         )
-        assert new_spawner is dict
-        new_spawner_obj = tmpVcSpawners(**new_spawner)
+        # TODO: remove this after finally figuring out when dict, when list
+        print(f"new_spawner type: {type(new_spawner)}")
+
+        if isinstance(new_spawner, dict):
+            new_spawner_obj = tmpVcSpawners(**new_spawner)
+        else:
+            new_spawner_obj = tmpVcSpawners(**new_spawner[0])
+
         # Update the local spawners list
         self.spawners.append(new_spawner_obj)
         self.spawner_ids.add(new_spawner_obj.channel_id)
