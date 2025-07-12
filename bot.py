@@ -17,6 +17,9 @@ class MecBot(commands.Bot):
     def __init__(
         self, db: AsyncWsSurrealConnection | AsyncHttpSurrealConnection
     ) -> None:
+        intents = discord.Intents.default()
+        intents.message_content = True
+        intents.members = True
         super().__init__(
             command_prefix=commands.when_mentioned_or("!"),
             # help_command=help_command,
@@ -24,7 +27,7 @@ class MecBot(commands.Bot):
             # descriptionb=description,
             # allowed_contexts=allowed_contexts,
             # allowed_installs=allowed_installs,
-            intents=discord.Intents.all(),
+            intents=intents,
             activity=discord.Activity(
                 name="Status Message",
                 type=discord.ActivityType.custom,
